@@ -1,0 +1,89 @@
+﻿@model ProgramViewModel
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Details</h1>
+
+
+<h1>
+    Name: @Model.NAME
+</h1>
+<h6>
+    Description: @Model.DESCRIPTION
+</h6>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Step
+            </th>
+            <th>
+                Command
+            </th>
+            <th>
+                Machine mask
+            </th>
+            <th>
+                Par 1
+            </th>
+            <th>
+                Par 2
+            </th>
+            <th>
+                Par 3
+            </th>
+            <th>
+                Par 4
+            </th>
+            <th>
+                Par 5
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @for (int j = 0; j < Model.PROGRAMS.Count; j++)
+        {
+            <tr>
+                <td>
+                    @Model.PROGRAMS[j].STEP
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].COMMAND
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].MACHINE_MASK
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].PARAMETER_1
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].PARAMETER_2
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].PARAMETER_3
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].PARAMETER_4
+                </td>
+                <td>
+                    @Model.PROGRAMS[j].PARAMETER_5
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<div>
+    <a asp-action="Edit" asp-controller="Program" asp-route-id="@Model.ID" class="btn btn-secondary m-1">
+        Edit
+    </a>
+    <form method="post" asp-action="Delete" asp-controller="Program" asp-route-id="@Model.ID">
+        <button class="btn btn-danger m-1">Delete</button>
+    </form>
+</div>
+

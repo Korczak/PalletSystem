@@ -1,0 +1,42 @@
+﻿@model List<ProgramViewModel>
+
+<p>
+    <a asp-action="CreateProgram">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                Name
+            </th>
+            <th scope="col">
+                Description
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tbody>
+            <tr>
+                <td scope="col">
+                    @Model[i].NAME
+                </td>
+                <td>
+                    @Model[i].DESCRIPTION
+                </td>
+                <td>
+                    <form class="form-inline" method="post" asp-action="Delete" asp-controller="Program" asp-route-id="@Model[i].ID">
+                        <a asp-action="Details" asp-controller="Program" asp-route-id="@Model[i].ID" class="btn btn-primary m-1">
+                            Details
+                        </a>
+                        <a asp-action="Edit" asp-controller="Program" asp-route-id="@Model[i].ID" class="btn btn-secondary m-1">
+                            Edit
+                        </a>
+                        <button type="submit" class="btn btn-danger m-2">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

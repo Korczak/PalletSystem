@@ -1,0 +1,48 @@
+﻿@model List<PalletViewModel>
+
+<p>
+    <a asp-action="AddPallet">Add pallet</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">
+                Name
+            </th>
+            <th scope="col">
+                Status
+            </th>
+            <th scope="col">
+                IP
+            </th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <tbody>
+            <tr>
+                <td scope="col">
+                    @Model[i].NAME
+                </td>
+                <td>
+                    @Model[i].STATUS_NAME
+                </td>
+                <td>
+                    @Model[i].IP
+                </td>
+                <td>
+                    <form class="form-inline" method="post" asp-action="Delete" asp-route-id="@Model[i].ID">
+                        <a asp-action="Details" asp-route-id="@Model[i].ID" class="btn btn-primary m-1">
+                            Details
+                        </a>
+                        <a asp-action="Edit" asp-route-id="@Model[i].ID" class="btn btn-secondary m-1">
+                            Edit
+                        </a>
+                        <button type="submit" class="btn btn-danger m-2">Delete</button>
+                    </form>
+                </td>
+            </tr>
+        </tbody>
+    }
+</table>

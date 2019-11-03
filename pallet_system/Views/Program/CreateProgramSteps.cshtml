@@ -1,0 +1,109 @@
+﻿@model ProgramViewModel
+
+@{
+    ViewData["Title"] = "Add New Program Steps";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>Add new program</h1>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <form>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <input class="program_id" asp-for="ID" hidden />
+            <div class="form-group">
+                <label asp-for="NAME" class="control-label">@Model.NAME</label>
+                <input asp-for="NAME" class="form-control" hidden />
+            </div>
+            <div class="form-group">
+                <label asp-for="DESCRIPTION" class="control-label">@Model.DESCRIPTION</label>
+                <input asp-for="DESCRIPTION" class="form-control" hidden />
+            </div>
+
+            <table class="table program-data-table">
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            Step
+                        </th>
+                        <th scope="col">
+                            Command
+                        </th>
+                        <th scope="col">
+                            Machine mask
+                        </th>
+                        <th scope="col">
+                            Par 1
+                        </th>
+                        <th scope="col">
+                            Par 2
+                        </th>
+                        <th scope="col">
+                            Par 3
+                        </th>
+                        <th scope="col">
+                            Par 4
+                        </th>
+                        <th scope="col">
+                            Par 5
+                        </th>
+                    </tr>
+                </thead>
+                @for (int i = 0; i < Model.PROGRAMS.Count; i++)
+                {
+                    <tbody>
+                        <tr class="program-data">
+                            <th scope="row">
+                                <input asp-for="PROGRAMS[i].PROGRAM_ID" value="@Model.ID" hidden />
+                                <input asp-for="PROGRAMS[i].STEP" value="@(i+1)" hidden />
+                                <label class="STEP_NUM">@(i + 1)</label>
+                            </th>
+                            <td>
+                                <input asp-for="PROGRAMS[i].COMMAND" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].COMMAND" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].MACHINE_MASK" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].MACHINE_MASK" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].PARAMETER_1" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].PARAMETER_1" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].PARAMETER_2" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].PARAMETER_2" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].PARAMETER_3" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].PARAMETER_3" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].PARAMETER_4" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].PARAMETER_4" class="text-danger"></span>
+                            </td>
+                            <td>
+                                <input asp-for="PROGRAMS[i].PARAMETER_5" class="form-control" />
+                                <span asp-validation-for="PROGRAMS[i].PARAMETER_5" class="text-danger"></span>
+                            </td>
+                        </tr>
+                    </tbody>
+                }
+            </table>
+            <div class="form-group">
+                <input asp-action="Create" type="submit" value="Save" formmethod="post" class="btn btn-primary" />
+                <input asp-action="CreateProgramSteps" type="submit" value="Add new step" formmethod="post" class="btn btn-primary" />
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="List">Back to List</a>
+</div>
+
+@section Scripts {
+    <script src="~/js/AddNewStep.js"></script>
+}
